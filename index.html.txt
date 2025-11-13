@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>🎤 Voice Calculator</h1>
+    <h1>🎤 Voice Calci</h1>
     <div class="display">
       <input type="text" id="display" placeholder="Say something like '5 plus 3'" readonly />
     </div>
