@@ -1,0 +1,39 @@
+const startBtn = document.getElementById("start-btn");
+const display = document.getElementById("display");
+const result = document.getElementById("result");
+
+// Speech Recognition Setup
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+
+recognition.onstart = () => {
+  display.value = "Listening...";
+};
+
+recognition.onspeechend = () => {
+  recognition.stop();
+};
+
+recognition.onresult = (event) => {
+  const spokenText = event.results[0][0].transcript.toLowerCase();
+  display.value = spokenText;
+
+  // Replace words with math operators
+  const expression = spokenText
+    .replace(/plus/g, "+")
+    .replace(/minus/g, "-")
+    .replace(/times|multiplied by/g, "*")
+    .replace(/divided by|over/g, "/")
+    .replace(/into/g, "*");
+
+  try {
+    const answer = eval(expression);
+    result.textContent = `Result: ${answer}`;
+  } catch (error) {
+    result.textContent = "Sorry, I couldn’t understand that.";
+  }
+};
+
+startBtn.addEventListener("click", () => {
+  recognition.start();
+});
