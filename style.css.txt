@@ -28,7 +28,7 @@ body {
 
 button {
   background: #007bff;
-  color: white;
+  color: blue;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
